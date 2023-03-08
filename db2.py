@@ -81,7 +81,8 @@ password = credentials["connection"]["db2"]["authentication"]["password"]
 rest_api_hostname = "bs2ipcul0apon0jufi80lite.db2.cloud.ibm.com"
 deployment_id = credentials["instance_administration_api"]["deployment_id"]
 
-sql_command = "SELECT * FROM USERS"
+#sql_command = "SELECT * FROM USERS"
+sql_command = "SELECT * FROM USERS ORDER BY userid DESC LIMIT 1"
 
 #method to get authentication token
 def get_auth(userid, password, rest_api_hostname, deployment_id):
@@ -168,6 +169,7 @@ def get_sql_result(auth_token, rest_api_hostname, job_id):
 
 def visualise_select(result):
 
+    print(result)
     columns = result[0]["columns"]
     rows = result[0]['rows']
 
@@ -176,6 +178,10 @@ def visualise_select(result):
     df[cols] = df[cols].apply(pandas.to_numeric, errors = 'ignore')
 
     return df
+
+def new_user(new_username, new_password):
+    send_sql(auth_token, password, rest_api_hostname, deployment_id)    
+    print("hi")
 
 def main():
     auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
