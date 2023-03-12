@@ -177,7 +177,10 @@ def get_users():
 
   result = get_sql_result(auth_token, rest_api_hostname, job_id)
 
-  return jsonify(result)
+  json_result = result[0]
+
+  return jsonify(json_result)
 
 if __name__ == "__main__":
   app.run(port = 5000)
+ 

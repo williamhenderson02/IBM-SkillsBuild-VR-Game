@@ -1,49 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+using System.Net;
+using System.IO;
 
-public class db2api : MonoBehaviour
+public static class DB2api
 {
-    private static string url = "http://localhost:5000/api/users"; // Replace with the actual URL of your Python API endpoint
-
-    [RuntimeInitializeOnLoadMethod]
-    static void Init()
+    public static Response GetNewResponse()
     {
-        GetUsers();
-    }
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:5000/users");
+        request.UseDefaultCredentials = true;
 
-    static void GetUsers()
-    {
-        UnityWebRequest www = UnityWebRequest.Get(url);
-        www.SendWebRequest();
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        StreamReader reader = new StreamReader(response.GetResponseStream());
 
-        while (!www.isDone)
-        {
-            // Wait for the request to complete
-        }
+        string json = reader.ReadToEnd();
 
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogError("Error: " + www.error);
-        }
-        else
-        {
-            string jsonResponse = www.downloadHandler.text;
-            List<User> users = JsonUtility.FromJson<List<User>>(jsonResponse);
+        return JsonUtility.FromJson<Response>(json);
 
-            foreach (User user in users)
-            {
-                Debug.Log("User ID: " + user.id + ", Username: " + user.username + ", Password: " + user.password);
-            }
-        }
-    }
-
-    [System.Serializable]
-    public class User
-    {
-        public int id;
-        public string username;
-        public string password;
     }
 }
