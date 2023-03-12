@@ -7,7 +7,7 @@ public class db2
 {
     private static string connectionString = "Database=Space-Escape-dB2;Hostname=bs2ipcul0apon0jufi80lite.db2.cloud.ibm.com;Port=31929;Protocol=TCPIP;UID=frx98001;PWD=rFKWq6qM3zKKP7pd;";
 
-    [RuntimeInitializeOnLoadMethod]
+    //[RuntimeInitializeOnLoadMethod]
     static void Start()
     {
         // Create connection

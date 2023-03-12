@@ -1,8 +1,9 @@
 import http.client
 import json
 import pandas
-import matplotlib
-import matplotlib.pyplot as plt
+from flask import Flask, jsonify
+
+app = Flask(__name__)
 
 #credentials taken from db2
 credentials = {
@@ -76,124 +77,107 @@ credentials = {
 }
 
 #important credentials from db2
-userid = credentials["connection"]["db2"]["authentication"]["username"]
-password = credentials["connection"]["db2"]["authentication"]["password"]
+userid = "frx98001"
+password = "rFKWq6qM3zKKP7pd"
 rest_api_hostname = "bs2ipcul0apon0jufi80lite.db2.cloud.ibm.com"
-deployment_id = credentials["instance_administration_api"]["deployment_id"]
+deployment_id = "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:93c244ed-9e15-4e8e-8322-2a0d01d83ea5::"
 
-#sql_command = "SELECT * FROM USERS"
-sql_command = "SELECT * FROM USERS ORDER BY userid DESC LIMIT 1"
+#sql_command = "SELECT * FROM USERS ORDER BY userid DESC LIMIT 1"
+sql_command = "SELECT * FROM USERS"
 
 #method to get authentication token
 def get_auth(userid, password, rest_api_hostname, deployment_id):
-    conn = http.client.HTTPSConnection(rest_api_hostname)
+  conn = http.client.HTTPSConnection(rest_api_hostname)
 
-    payload  = "{\"userid\":\"" + userid + "\",\"password\":\"" + password + "\"}"
+  payload  = "{\"userid\":\"" + userid + "\",\"password\":\"" + password + "\"}"
 
-    headers = {
-        'content-type': "application/json",
-        'x-deployment-id': deployment_id
-        }
+  headers = {
+      'content-type': "application/json",
+      'x-deployment-id': deployment_id
+      }
 
-    conn.request("POST", "/dbapi/v4/auth/tokens", payload, headers = headers)
+  conn.request("POST", "/dbapi/v4/auth/tokens", payload, headers = headers)
 
-    res = conn.getresponse()
-    data = res.read()
+  res = conn.getresponse()
+  data = res.read()
 
-    data_decoded = json.loads(data.decode("utf-8"))
-    auth_token = data_decoded["token"]
+  data_decoded = json.loads(data.decode("utf-8"))
+  auth_token = data_decoded["token"]
 
-    return(auth_token)
+  return(auth_token)
 
 def get_api_key(rest_api_hostname, deployment_id, auth_token):
-    conn = http.client.HTTPSConnection(rest_api_hostname)
+  conn = http.client.HTTPSConnection(rest_api_hostname)
 
-    headers = {
-        'content-type': "application/json",
-        'authorization': "Bearer " + auth_token,
-        'x-deployment-id': deployment_id
-        }
+  headers = {
+      'content-type': "application/json",
+      'authorization': "Bearer " + auth_token,
+      'x-deployment-id': deployment_id
+      }
 
-    conn.request("GET", "/dbapi/v4/auth/token/publickey", headers=headers)
+  conn.request("GET", "/dbapi/v4/auth/token/publickey", headers=headers)
 
-    res = conn.getresponse()
-    data = res.read()
+  res = conn.getresponse()
+  data = res.read()
 
-    data_decoded = json.loads(data.decode("utf-8"))
-    public_key = data_decoded["kid"]
+  data_decoded = json.loads(data.decode("utf-8"))
+  public_key = data_decoded["kid"]
 
-    return public_key
+  return public_key
 
 def send_sql(rest_api_hostname, deployment_id, auth_token, sql_command):
-    conn = http.client.HTTPSConnection(rest_api_hostname)
+  conn = http.client.HTTPSConnection(rest_api_hostname)
 
-    payload = "{\"commands\":\"" + sql_command + "\",\"limit\":10,\"separator\":\";\",\"stop_on_error\":\"yes\"}"
+  payload = "{\"commands\":\"" + sql_command + "\",\"limit\":10,\"separator\":\";\",\"stop_on_error\":\"yes\"}"
 
-    headers = {
-        'content-type': "application/json",
-        'authorization': "Bearer " + auth_token,
-        'x-deployment-id': deployment_id
-        }
+  headers = {
+      'content-type': "application/json",
+      'authorization': "Bearer " + auth_token,
+      'x-deployment-id': deployment_id
+      }
 
-    conn.request("POST", "/dbapi/v4/sql_jobs", payload, headers = headers)
+  conn.request("POST", "/dbapi/v4/sql_jobs", payload, headers = headers)
 
-    res = conn.getresponse()
-    data = res.read()
+  res = conn.getresponse()
+  data = res.read()
 
-    data_decoded = json.loads(data.decode("utf-8"))
-    job_id = data_decoded["id"]
+  data_decoded = json.loads(data.decode("utf-8"))
+  job_id = data_decoded["id"]
 
-    return job_id
+  return job_id
 
 def get_sql_result(auth_token, rest_api_hostname, job_id):
-    conn = http.client.HTTPSConnection(rest_api_hostname)
+  conn = http.client.HTTPSConnection(rest_api_hostname)
 
-    headers = {
-    'content-type': "application/json",
-    'authorization': "Bearer " + auth_token,
-    'x-deployment-id': deployment_id
-    }
+  headers = {
+  'content-type': "application/json",
+  'authorization': "Bearer " + auth_token,
+  'x-deployment-id': deployment_id
+  }
 
-    request = "/dbapi/v4/sql_jobs/"
-    request = request + job_id
+  request = "/dbapi/v4/sql_jobs/"
+  request = request + job_id
 
-    conn.request("GET", request, headers = headers)
+  conn.request("GET", request, headers = headers)
 
-    res = conn.getresponse()
-    data = res.read()
+  res = conn.getresponse()
+  data = res.read()
 
-    data_decoded = json.loads(data.decode("utf-8"))
-    result = data_decoded["results"]
+  data_decoded = json.loads(data.decode("utf-8"))
+  result = data_decoded["results"]
 
-    return result
+  return result
 
-def visualise_select(result):
+@app.route('/users')
+def get_users():
 
-    print(result)
-    columns = result[0]["columns"]
-    rows = result[0]['rows']
+  auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
 
-    df = pandas.DataFrame(data = rows, columns = columns)
-    cols = df.columns
-    df[cols] = df[cols].apply(pandas.to_numeric, errors = 'ignore')
+  job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
 
-    return df
+  result = get_sql_result(auth_token, rest_api_hostname, job_id)
 
-def new_user(new_username, new_password):
-    send_sql(auth_token, password, rest_api_hostname, deployment_id)    
-    print("hi")
-
-def main():
-    auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
-
-    api_key = get_api_key(rest_api_hostname, deployment_id, auth_token)
-
-    job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
-
-    result  = get_sql_result(auth_token, rest_api_hostname, job_id)
-
-    df = visualise_select(result)
-    print(df)
+  return jsonify(result)
 
 if __name__ == "__main__":
-    main()
+  app.run(port = 5000)
