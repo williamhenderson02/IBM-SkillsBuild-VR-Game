@@ -1,7 +1,7 @@
 import http.client
 import json
 import pandas
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect, url_for, request
 
 app = Flask(__name__)
 
@@ -83,7 +83,7 @@ rest_api_hostname = "bs2ipcul0apon0jufi80lite.db2.cloud.ibm.com"
 deployment_id = "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:93c244ed-9e15-4e8e-8322-2a0d01d83ea5::"
 
 #sql_command = "SELECT * FROM USERS ORDER BY userid DESC LIMIT 1"
-sql_command = "SELECT * FROM USERS"
+sql_command = "SELECT * FROM IBM_AI"
 
 #method to get authentication token
 def get_auth(userid, password, rest_api_hostname, deployment_id):
@@ -168,8 +168,9 @@ def get_sql_result(auth_token, rest_api_hostname, job_id):
 
   return result
 
-@app.route('/users')
-def get_users():
+@app.route('/cloud')
+def get_cloud():
+  sql_command = "SELECT * FROM IBM_CLOUD"
 
   auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
 
@@ -177,7 +178,67 @@ def get_users():
 
   result = get_sql_result(auth_token, rest_api_hostname, job_id)
 
-  return jsonify(result)
+  json_result = result[0]
+
+  return jsonify(json_result)
+
+@app.route('/ai')
+def get_ai():
+  sql_command = "SELECT * FROM IBM_AI"
+
+  auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
+
+  job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
+
+  result = get_sql_result(auth_token, rest_api_hostname, job_id)
+
+  json_result = result[0]
+
+  return jsonify(json_result)
+
+@app.route('/security')
+def get_security():
+  sql_command = "SELECT * FROM IBM_SECURITY"
+
+  auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
+
+  job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
+
+  result = get_sql_result(auth_token, rest_api_hostname, job_id)
+
+  json_result = result[0]
+
+  return jsonify(json_result)
+
+@app.route('/data-science')
+def get_data_science():
+  sql_command = "SELECT * FROM IBM_DATA_SCIENCE"
+
+  auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
+
+  job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
+
+  result = get_sql_result(auth_token, rest_api_hostname, job_id)
+
+  json_result = result[0]
+
+  return jsonify(json_result)
+
+@app.route('/users')
+def get_users():
+  sql_command = "SELECT * FROM USERS"
+
+  auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
+
+  job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
+
+  result = get_sql_result(auth_token, rest_api_hostname, job_id)
+
+  json_result = result[0]
+
+  return jsonify(json_result)
+
 
 if __name__ == "__main__":
   app.run(port = 5000)
+ 
