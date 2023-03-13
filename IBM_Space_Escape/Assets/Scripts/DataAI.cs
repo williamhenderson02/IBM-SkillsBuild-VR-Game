@@ -11,7 +11,8 @@ public class DataAI : MonoBehaviour
     public void NewResponse()
     {
         Response c = DB2apiAI.GetNewResponse();
-        responseText.text = c.command;
+
+        responseText.text = c.columns[0];
     }
 }
 
