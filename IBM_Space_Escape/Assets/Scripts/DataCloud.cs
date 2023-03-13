@@ -10,8 +10,10 @@ public class DataCloud : MonoBehaviour
 
     public void NewResponse()
     {
-        Response c = DB2apiCloud.GetNewResponse();
-        responseText.text = c.command;
+        Response r = DB2apiCloud.GetNewResponse();
+        string[] columns = r.columns;
+        string[] rows = r.rows;
+        responseText.text = columns[0];
     }
 }
 

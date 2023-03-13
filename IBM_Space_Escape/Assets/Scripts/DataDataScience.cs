@@ -10,8 +10,10 @@ public class DataDataScience : MonoBehaviour
 
     public void NewResponse()
     {
-        Response c = DB2apiDataScience.GetNewResponse();
-        responseText.text = c.command;
+        Response r = DB2apiDataScience.GetNewResponse();
+        string[] columns = r.columns;
+        string[] rows = r.rows;
+        responseText.text = columns[0];
     }
 }
 

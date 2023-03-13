@@ -10,9 +10,10 @@ public class DataAI : MonoBehaviour
 
     public void NewResponse()
     {
-        Response c = DB2apiAI.GetNewResponse();
-
-        responseText.text = c.columns[0];
+        Response r = DB2apiAI.GetNewResponse();
+        string[] columns = r.columns;
+        string[] rows = r.rows;
+        responseText.text = columns[0];
     }
 }
 

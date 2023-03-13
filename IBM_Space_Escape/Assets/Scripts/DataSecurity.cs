@@ -10,8 +10,10 @@ public class DataSecurity : MonoBehaviour
 
     public void NewResponse()
     {
-        Response c = DB2apiSecurity.GetNewResponse();
-        responseText.text = c.command;
+        Response r = DB2apiSecurity.GetNewResponse();
+        string[] columns = r.columns;
+        string[] rows = r.rows;
+        responseText.text = columns[0];
     }
 }
 

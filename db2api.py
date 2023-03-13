@@ -224,6 +224,21 @@ def get_data_science():
 
   return jsonify(json_result)
 
+@app.route('/users')
+def get_users():
+  sql_command = "SELECT * FROM USERS"
+
+  auth_token = get_auth(userid, password, rest_api_hostname, deployment_id)
+
+  job_id = send_sql(rest_api_hostname, deployment_id, auth_token, sql_command)
+
+  result = get_sql_result(auth_token, rest_api_hostname, job_id)
+
+  json_result = result[0]
+
+  return jsonify(json_result)
+
+
 if __name__ == "__main__":
   app.run(port = 5000)
  
