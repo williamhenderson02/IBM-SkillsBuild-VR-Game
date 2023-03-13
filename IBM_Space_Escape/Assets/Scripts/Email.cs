@@ -7,7 +7,7 @@ using System.Net.Mail;
 
 public class Email: MonoBehaviour
 {
-    public static void Main(string[] args)
+    public void SendMail()
     {
         MailAddress to = new MailAddress("tgpz35@durham.ac.uk");
         MailAddress from = new MailAddress("spaceescapevr@gmail.com");
