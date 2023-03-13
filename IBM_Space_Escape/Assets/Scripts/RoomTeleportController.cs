@@ -9,7 +9,6 @@ public class RoomTeleportController : MonoBehaviour
 
     public void TeleportToRoom()
     {
-        Debug.Log("Should've teleported");
         origin.transform.position = destinationObject.transform.position;
     }
 }
