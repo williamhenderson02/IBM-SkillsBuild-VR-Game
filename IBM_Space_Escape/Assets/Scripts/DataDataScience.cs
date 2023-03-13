@@ -12,7 +12,7 @@ public class DataDataScience : MonoBehaviour
     {
         Response r = DB2apiDataScience.GetNewResponse();
         string[] columns = r.columns;
-        string[] rows = r.rows;
+        string[,] rows = r.rows;
         responseText.text = columns[0];
     }
 }

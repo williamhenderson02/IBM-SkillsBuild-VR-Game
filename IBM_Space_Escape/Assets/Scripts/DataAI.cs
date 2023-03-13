@@ -12,7 +12,7 @@ public class DataAI : MonoBehaviour
     {
         Response r = DB2apiAI.GetNewResponse();
         string[] columns = r.columns;
-        string[] rows = r.rows;
+        string[,] rows = r.rows;
         responseText.text = columns[0];
     }
 }
