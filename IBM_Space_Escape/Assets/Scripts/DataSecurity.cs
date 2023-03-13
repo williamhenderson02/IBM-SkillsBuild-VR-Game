@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Data : MonoBehaviour
+public class DataSecurity : MonoBehaviour
 {
     public TextMeshProUGUI responseText;
 
     public void NewResponse()
     {
-        Response c = DB2api.GetNewResponse();
+        Response c = DB2apiSecurity.GetNewResponse();
         responseText.text = c.command;
     }
 }
