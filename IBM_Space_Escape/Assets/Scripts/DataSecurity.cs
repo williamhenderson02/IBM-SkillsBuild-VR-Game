@@ -6,22 +6,27 @@ using TMPro;
 
 public class DataSecurity : MonoBehaviour
 {
+    public TextMeshProUGUI qText;
     public TextMeshProUGUI aText1;
     public TextMeshProUGUI aText2;
     public TextMeshProUGUI aText3;
     public TextMeshProUGUI aText4;
     public string[,] rows;
+    public int qNo;
  
-    public void NewResponse()
+    public string[,] NewResponse()
     {
         Response r = DB2apiSecurity.GetNewResponse();
         rows = r.rows;
-
+        return rows;
     }
 
-    public void Display(int qNo)
+    public void Display()
     {
+        rows = NewResponse();
         string questionText = rows[qNo, 1];
+        Debug.Log("::::" + questionText);
+        qText.text = "[]" + qNo + ".] " + questionText;
 
         string option1 = rows[qNo, 2];
         aText1.text = "Answer 1: " + option1;
@@ -33,7 +38,7 @@ public class DataSecurity : MonoBehaviour
         aText4.text = "Answer 4: " + option4;
     }
 
-    public void Check(int num, int qNo)
+    public void Check(int num)
     {
         string answer = rows[qNo, 6];
 
