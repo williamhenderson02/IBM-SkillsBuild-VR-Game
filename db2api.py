@@ -87,8 +87,11 @@ sql_command = "SELECT * FROM IBM_AI"
 
 #method to get authentication token
 def get_auth(userid, password, rest_api_hostname, deployment_id):
+
+  #establish a connection
   conn = http.client.HTTPSConnection(rest_api_hostname)
 
+  #set up the payload with crednetials
   payload  = "{\"userid\":\"" + userid + "\",\"password\":\"" + password + "\"}"
 
   headers = {
@@ -96,15 +99,18 @@ def get_auth(userid, password, rest_api_hostname, deployment_id):
       'x-deployment-id': deployment_id
       }
 
+  #use a POST request to the /auth/tokens endpoint with the payload and headers
   conn.request("POST", "/dbapi/v4/auth/tokens", payload, headers = headers)
 
+  #get response
   res = conn.getresponse()
   data = res.read()
 
+  #parse response
   data_decoded = json.loads(data.decode("utf-8"))
-  print(data_decoded)
   auth_token = data_decoded["token"]
 
+  #return auth token to be used in further requests
   return(auth_token)
 
 def get_api_key(rest_api_hostname, deployment_id, auth_token):
