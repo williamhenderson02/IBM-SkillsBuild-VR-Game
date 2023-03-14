@@ -12,16 +12,16 @@ credentials = {
       "arguments": [
         [
           "-u",
-          "frx98001",
+          "yhc80422",
           "-p",
-          "rFKWq6qM3zKKP7pd",
+          "ztvWffHhMCYbmzXw",
           "--ssl",
           "--sslCAFile",
           "1dd14d0c-1b52-4f63-a606-53ecba28771d",
           "--authenticationDatabase",
           "admin",
           "--host",
-          "55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:31929"
+          "8e359033-a1c9-4643-82ef-8ac06f5107eb.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:30120"
         ]
       ],
       "bin": "db2",
@@ -30,7 +30,7 @@ credentials = {
         "name": "1dd14d0c-1b52-4f63-a606-53ecba28771d"
       },
       "composed": [
-        "db2 -u frx98001 -p rFKWq6qM3zKKP7pd --ssl --sslCAFile 1dd14d0c-1b52-4f63-a606-53ecba28771d --authenticationDatabase admin --host 55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:31929"
+        "db2 -u yhc80422 -p ztvWffHhMCYbmzXw --ssl --sslCAFile 1dd14d0c-1b52-4f63-a606-53ecba28771d --authenticationDatabase admin --host 8e359033-a1c9-4643-82ef-8ac06f5107eb.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:30120"
       ],
       "environment": {},
       "type": "cli"
@@ -38,26 +38,26 @@ credentials = {
     "db2": {
       "authentication": {
         "method": "direct",
-        "password": "rFKWq6qM3zKKP7pd",
-        "username": "frx98001"
+        "password": "ztvWffHhMCYbmzXw",
+        "username": "yhc80422"
       },
       "certificate": {
         "certificate_base64": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURIVENDQWdXZ0F3SUJBZ0lVT3dvMC9va09CUEN5RjFWeFJxVGhKRW9ubDBVd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0hqRWNNQm9HQTFVRUF3d1RTVUpOSUVOc2IzVmtJRVJoZEdGaVlYTmxjekFlRncweU1EQTRNRFF3TWpVMwpNalphRncwek1EQTRNREl3TWpVM01qWmFNQjR4SERBYUJnTlZCQU1NRTBsQ1RTQkRiRzkxWkNCRVlYUmhZbUZ6ClpYTXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFEb0ZFNGQ0SGdOeXZMUVIwR3gKQTB0amRXQnM4NVBjTDNyRStjN1R3K2diRUdQSUxJU0VZV3o4Y1g1TG1XQk0rY1FnOG9VeSsrQXJ3OEoxaXdRZQpySmlIU2I1clF4WTM0c3BQeGRFVEZkWEhScnJhMGU2VmM4MW42TllJL0ZHSnl1Q3hrTG5GMUtFQW9hbHYwaDM2CnhDT0FvcXRwTlFrTzNpMTRGeU0yRDRiajkxckI4RGk4Vy9XMVpVdVhMNGwzZXVLZUVCeTRuZmhJV3kySVc3aUMKbGpMZ3RlN3hZTDVHbVpKOUdsYWtrSnJ1cnpNREFQLzVUYnRlUUIydElodTBRSVRFZHlESVFYUEZGRDBHYzloZAo3M29JdnpVZUJ3VC9uRHN3OTJNNC82SkdtZWpKN0lpdFBTN3Y2a2dlUVhINDlBaUVJNXpQdUVpVzNOYi9GR0pYCmY2a2JBZ01CQUFHalV6QlJNQjBHQTFVZERnUVdCQlR2RzZ2RU5MRjFVbWZnQ003MmxOcmMzSDI2bURBZkJnTlYKSFNNRUdEQVdnQlR2RzZ2RU5MRjFVbWZnQ003MmxOcmMzSDI2bURBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQkFRQTgvdFVnUTZlaTZYWHZndDJ0dUdrbkpva1Y5UWNkaTNZbFVFWkNDUytjClVQZ3NnMnVBMldxcHlWTm1mRkhjcHZ1Vmp0VHRYTmk2NUM2WlZsRnYxc3p1cU9zdFB5bkJ4blN4cUs0dkc0dTkKVjBWRUgxcE1tZnZBSmxkV3c4UEJTZGJtTk1HdGM4SzlwT0o5OVdBQ1ZFRXVXVGdDeHJKTXFBZnpYUXlidUV0dwp0cW1pV2swTmVXNGk5ZEY4S2dTWUVaQWFodXVBSlRldXB2R2RPV1U0eEV4bm03aEVRbmZPV2ZITThDd08xNWFZClRGQ2s0Q0pDUmR4Mlg5U284V3o1Z3MzcncyRkFDQlJyZ0NYeFFDZnZrZTZUdVNHNkxFRHJHbmpWaXVSQkpZdW4KT1RxWXROaVBHaHpuTHJrL0Fzam1LMzBxQmFLTmFyNUdQajhqalpNb2RiZ04KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
         "name": "1dd14d0c-1b52-4f63-a606-53ecba28771d"
       },
       "composed": [
-        "db2://frx98001:rFKWq6qM3zKKP7pd@55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:31929/bludb?authSource=admin&replicaSet=replset"
+        "db2://yhc80422:ztvWffHhMCYbmzXw@8e359033-a1c9-4643-82ef-8ac06f5107eb.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:30120/bludb?authSource=admin&replicaSet=replset"
       ],
       "database": "bludb",
       "host_ros": [],
       "hosts": [
         {
-          "hostname": "55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud",
-          "port": 31929
+          "hostname": "8e359033-a1c9-4643-82ef-8ac06f5107eb.bs2io90l08kqb1od8lcg.databases.appdomain.cloud",
+          "port": 30120
         }
       ],
       "jdbc_url": [
-        "jdbc:db2://55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:31929/bludb:user=<userid>;password=<your_password>;sslConnection=true;"
+        "jdbc:db2://8e359033-a1c9-4643-82ef-8ac06f5107eb.bs2io90l08kqb1od8lcg.databases.appdomain.cloud:30120/bludb:user=<userid>;password=<your_password>;sslConnection=true;"
       ],
       "path": "/bludb",
       "query_options": {
@@ -70,17 +70,17 @@ credentials = {
     }
   },
   "instance_administration_api": {
-    "deployment_id": "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:93c244ed-9e15-4e8e-8322-2a0d01d83ea5::",
-    "instance_id": "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:93c244ed-9e15-4e8e-8322-2a0d01d83ea5::",
+    "deployment_id": "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:2060d3e3-ea60-4845-ba9d-42d821a077e2::",
+    "instance_id": "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:2060d3e3-ea60-4845-ba9d-42d821a077e2::",
     "root": "https://apieugb.db2.cloud.ibm.com/v5/ibm"
   }
 }
 
 #important credentials from db2
-userid = "frx98001"
-password = "rFKWq6qM3zKKP7pd"
-rest_api_hostname = "bs2ipcul0apon0jufi80lite.db2.cloud.ibm.com"
-deployment_id = "crn:v1:bluemix:public:dashdb-for-transactions:eu-gb:a/1072bde6853044c2bcefefe05dfb8244:93c244ed-9e15-4e8e-8322-2a0d01d83ea5::"
+userid = credentials['connection']['db2']['authentication']['username']
+password = credentials['connection']['db2']['authentication']['password']
+rest_api_hostname = 'bs2ipcul0apon0jufi80lite.db2.cloud.ibm.com'
+deployment_id = credentials['instance_administration_api']['deployment_id']
 
 #sql_command = "SELECT * FROM USERS ORDER BY userid DESC LIMIT 1"
 sql_command = "SELECT * FROM IBM_AI"
@@ -102,6 +102,7 @@ def get_auth(userid, password, rest_api_hostname, deployment_id):
   data = res.read()
 
   data_decoded = json.loads(data.decode("utf-8"))
+  print(data_decoded)
   auth_token = data_decoded["token"]
 
   return(auth_token)
