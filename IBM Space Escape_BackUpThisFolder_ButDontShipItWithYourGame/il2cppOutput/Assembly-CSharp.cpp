@@ -11,6 +11,16 @@
 #include <stdint.h>
 
 
+struct VirtualActionInvoker0
+{
+	typedef void (*Action)(void*, const RuntimeMethod*);
+
+	static inline void Invoke (Il2CppMethodSlot slot, RuntimeObject* obj)
+	{
+		const VirtualInvokeData& invokeData = il2cpp_codegen_get_virtual_invoke_data(slot, obj);
+		((Action)invokeData.methodPtr)(obj, invokeData.method);
+	}
+};
 template <typename T1>
 struct VirtualActionInvoker1
 {
@@ -4737,6 +4747,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral265B5BE70C3C1A534847EEA3FE1CC60134BC4F0E);
 		s_Il2CppMethodInitialized = true;
 	}
+	HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* V_0 = NULL;
+	String_t* V_1 = NULL;
 	{
 		// HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:5000/ai");
 		il2cpp_codegen_runtime_class_init_inline(WebRequest_t89050438AE9A5AA9221ECAE223584127F7C1294B_il2cpp_TypeInfo_var);
@@ -4750,21 +4762,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		NullCheck(L_1);
 		WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* L_2;
 		L_2 = VirtualFuncInvoker0< WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* >::Invoke(19 /* System.Net.WebResponse System.Net.WebRequest::GetResponse() */, L_1);
+		V_0 = ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var));
 		// StreamReader reader = new StreamReader(response.GetResponseStream());
-		NullCheck(((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_3;
-		L_3 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_4 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
-		NullCheck(L_4);
-		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_4, L_3, NULL);
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_3 = V_0;
+		NullCheck(L_3);
+		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_4;
+		L_4 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, L_3);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_5 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
+		NullCheck(L_5);
+		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_5, L_4, NULL);
 		// string json = reader.ReadToEnd();
-		NullCheck(L_4);
-		String_t* L_5;
-		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_4);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_6 = L_5;
+		NullCheck(L_6);
+		String_t* L_7;
+		L_7 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_6);
+		V_1 = L_7;
+		// response.Close();
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_8 = V_0;
+		NullCheck(L_8);
+		VirtualActionInvoker0::Invoke(9 /* System.Void System.Net.WebResponse::Close() */, L_8);
+		// reader.Close();
+		NullCheck(L_6);
+		VirtualActionInvoker0::Invoke(7 /* System.Void System.IO.TextReader::Close() */, L_6);
 		// return JsonUtility.FromJson<Response>(json);
-		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_6;
-		L_6 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_5, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
-		return L_6;
+		String_t* L_9 = V_1;
+		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_10;
+		L_10 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_9, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
+		return L_10;
 	}
 }
 #ifdef __clang__
@@ -4789,6 +4813,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral5E428473AD44DF121A98E4EDFF3FE37836CD9FF2);
 		s_Il2CppMethodInitialized = true;
 	}
+	HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* V_0 = NULL;
+	String_t* V_1 = NULL;
 	{
 		// HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:5000/cloud");
 		il2cpp_codegen_runtime_class_init_inline(WebRequest_t89050438AE9A5AA9221ECAE223584127F7C1294B_il2cpp_TypeInfo_var);
@@ -4802,21 +4828,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		NullCheck(L_1);
 		WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* L_2;
 		L_2 = VirtualFuncInvoker0< WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* >::Invoke(19 /* System.Net.WebResponse System.Net.WebRequest::GetResponse() */, L_1);
+		V_0 = ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var));
 		// StreamReader reader = new StreamReader(response.GetResponseStream());
-		NullCheck(((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_3;
-		L_3 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_4 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
-		NullCheck(L_4);
-		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_4, L_3, NULL);
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_3 = V_0;
+		NullCheck(L_3);
+		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_4;
+		L_4 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, L_3);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_5 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
+		NullCheck(L_5);
+		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_5, L_4, NULL);
 		// string json = reader.ReadToEnd();
-		NullCheck(L_4);
-		String_t* L_5;
-		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_4);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_6 = L_5;
+		NullCheck(L_6);
+		String_t* L_7;
+		L_7 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_6);
+		V_1 = L_7;
+		// response.Close();
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_8 = V_0;
+		NullCheck(L_8);
+		VirtualActionInvoker0::Invoke(9 /* System.Void System.Net.WebResponse::Close() */, L_8);
+		// reader.Close();
+		NullCheck(L_6);
+		VirtualActionInvoker0::Invoke(7 /* System.Void System.IO.TextReader::Close() */, L_6);
 		// return JsonUtility.FromJson<Response>(json);
-		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_6;
-		L_6 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_5, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
-		return L_6;
+		String_t* L_9 = V_1;
+		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_10;
+		L_10 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_9, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
+		return L_10;
 	}
 }
 #ifdef __clang__
@@ -4841,6 +4879,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralB85BFF0763636712A1E057647E76395352BE2D72);
 		s_Il2CppMethodInitialized = true;
 	}
+	HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* V_0 = NULL;
+	String_t* V_1 = NULL;
 	{
 		// HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:5000/data-science");
 		il2cpp_codegen_runtime_class_init_inline(WebRequest_t89050438AE9A5AA9221ECAE223584127F7C1294B_il2cpp_TypeInfo_var);
@@ -4854,21 +4894,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		NullCheck(L_1);
 		WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* L_2;
 		L_2 = VirtualFuncInvoker0< WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* >::Invoke(19 /* System.Net.WebResponse System.Net.WebRequest::GetResponse() */, L_1);
+		V_0 = ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var));
 		// StreamReader reader = new StreamReader(response.GetResponseStream());
-		NullCheck(((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_3;
-		L_3 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_4 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
-		NullCheck(L_4);
-		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_4, L_3, NULL);
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_3 = V_0;
+		NullCheck(L_3);
+		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_4;
+		L_4 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, L_3);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_5 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
+		NullCheck(L_5);
+		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_5, L_4, NULL);
 		// string json = reader.ReadToEnd();
-		NullCheck(L_4);
-		String_t* L_5;
-		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_4);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_6 = L_5;
+		NullCheck(L_6);
+		String_t* L_7;
+		L_7 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_6);
+		V_1 = L_7;
+		// response.Close();
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_8 = V_0;
+		NullCheck(L_8);
+		VirtualActionInvoker0::Invoke(9 /* System.Void System.Net.WebResponse::Close() */, L_8);
+		// reader.Close();
+		NullCheck(L_6);
+		VirtualActionInvoker0::Invoke(7 /* System.Void System.IO.TextReader::Close() */, L_6);
 		// return JsonUtility.FromJson<Response>(json);
-		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_6;
-		L_6 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_5, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
-		return L_6;
+		String_t* L_9 = V_1;
+		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_10;
+		L_10 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_9, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
+		return L_10;
 	}
 }
 #ifdef __clang__
@@ -4893,6 +4945,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral203E58510A9514E6E4F74AE87ACACC5BFF6F083B);
 		s_Il2CppMethodInitialized = true;
 	}
+	HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* V_0 = NULL;
+	String_t* V_1 = NULL;
 	{
 		// HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:5000/security");
 		il2cpp_codegen_runtime_class_init_inline(WebRequest_t89050438AE9A5AA9221ECAE223584127F7C1294B_il2cpp_TypeInfo_var);
@@ -4906,21 +4960,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2
 		NullCheck(L_1);
 		WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* L_2;
 		L_2 = VirtualFuncInvoker0< WebResponse_t7CDE1F20895C8D5AD392425F9AD4BE8E8696B682* >::Invoke(19 /* System.Net.WebResponse System.Net.WebRequest::GetResponse() */, L_1);
+		V_0 = ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var));
 		// StreamReader reader = new StreamReader(response.GetResponseStream());
-		NullCheck(((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_3;
-		L_3 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, ((HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A*)CastclassClass((RuntimeObject*)L_2, HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A_il2cpp_TypeInfo_var)));
-		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_4 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
-		NullCheck(L_4);
-		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_4, L_3, NULL);
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_3 = V_0;
+		NullCheck(L_3);
+		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_4;
+		L_4 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(12 /* System.IO.Stream System.Net.WebResponse::GetResponseStream() */, L_3);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_5 = (StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B*)il2cpp_codegen_object_new(StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B_il2cpp_TypeInfo_var);
+		NullCheck(L_5);
+		StreamReader__ctor_mAFA827D6D825FEC2C29C73B65C2DD1AB9076DEC7(L_5, L_4, NULL);
 		// string json = reader.ReadToEnd();
-		NullCheck(L_4);
-		String_t* L_5;
-		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_4);
+		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_6 = L_5;
+		NullCheck(L_6);
+		String_t* L_7;
+		L_7 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_6);
+		V_1 = L_7;
+		// response.Close();
+		HttpWebResponse_tF287E6CE296D3B6912CDEFEDE8FBF5A27D70AE0A* L_8 = V_0;
+		NullCheck(L_8);
+		VirtualActionInvoker0::Invoke(9 /* System.Void System.Net.WebResponse::Close() */, L_8);
+		// reader.Close();
+		NullCheck(L_6);
+		VirtualActionInvoker0::Invoke(7 /* System.Void System.IO.TextReader::Close() */, L_6);
 		// return JsonUtility.FromJson<Response>(json);
-		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_6;
-		L_6 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_5, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
-		return L_6;
+		String_t* L_9 = V_1;
+		Response_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096* L_10;
+		L_10 = JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB(L_9, JsonUtility_FromJson_TisResponse_t75768FEEBAEDF1DA9B1C874AD9CF2675BE2DD096_m358D650023202885D78F45BFB6A8045EF8C9EBAB_RuntimeMethod_var);
+		return L_10;
 	}
 }
 #ifdef __clang__

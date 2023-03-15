@@ -14,6 +14,9 @@ public static class DB2apiDataScience
 
         string json = reader.ReadToEnd();
 
+        response.Close();
+        reader.Close();
+
         return JsonUtility.FromJson<Response>(json);
 
     }
