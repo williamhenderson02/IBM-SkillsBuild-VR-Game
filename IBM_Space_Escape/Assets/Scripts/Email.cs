@@ -14,7 +14,7 @@ public class Email: MonoBehaviour
 
         MailMessage email = new MailMessage(from, to);
         email.Subject = "IBM Skills Build Link";
-        email.Body = "Welcome to VR Space Escape!\n\nTo access the IBM SkillsBuild content click this link to sign up: https://skillsbuild.org/ \n\nFollow the instructions in the user manual if you're unsure about account creation and configuration!";
+        email.Body = "Welcome to VR Space Escape!\n\nTo access the IBM SkillsBuild content click this link to log in and review quiz content: https://skillsbuild.org/ \n\nIf you do not have an account follow the instructions in section 2.1 of the user manual if you're unsure about account creation and configuration!";
 
         SmtpClient smtp = new SmtpClient();
         smtp.Host = "smtp.gmail.com";
