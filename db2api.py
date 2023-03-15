@@ -2,6 +2,7 @@ import http.client
 import json
 import pandas
 from flask import Flask, jsonify, redirect, url_for, request
+import numpy as np
 
 app = Flask(__name__)
 
@@ -87,8 +88,11 @@ sql_command = "SELECT * FROM IBM_AI"
 
 #method to get authentication token
 def get_auth(userid, password, rest_api_hostname, deployment_id):
+
+  #establish a connection
   conn = http.client.HTTPSConnection(rest_api_hostname)
 
+  #set up the payload with crednetials
   payload  = "{\"userid\":\"" + userid + "\",\"password\":\"" + password + "\"}"
 
   headers = {
@@ -96,15 +100,18 @@ def get_auth(userid, password, rest_api_hostname, deployment_id):
       'x-deployment-id': deployment_id
       }
 
+  #use a POST request to the /auth/tokens endpoint with the payload and headers
   conn.request("POST", "/dbapi/v4/auth/tokens", payload, headers = headers)
 
+  #get response
   res = conn.getresponse()
   data = res.read()
 
+  #parse response
   data_decoded = json.loads(data.decode("utf-8"))
-  print(data_decoded)
   auth_token = data_decoded["token"]
 
+  #return auth token to be used in further requests
   return(auth_token)
 
 def get_api_key(rest_api_hostname, deployment_id, auth_token):
@@ -127,8 +134,10 @@ def get_api_key(rest_api_hostname, deployment_id, auth_token):
   return public_key
 
 def send_sql(rest_api_hostname, deployment_id, auth_token, sql_command):
+  #establish connection
   conn = http.client.HTTPSConnection(rest_api_hostname)
 
+  #create payload and headers
   payload = "{\"commands\":\"" + sql_command + "\",\"limit\":10,\"separator\":\";\",\"stop_on_error\":\"yes\"}"
 
   headers = {
@@ -137,36 +146,46 @@ def send_sql(rest_api_hostname, deployment_id, auth_token, sql_command):
       'x-deployment-id': deployment_id
       }
 
+  #request to perform job
   conn.request("POST", "/dbapi/v4/sql_jobs", payload, headers = headers)
 
   res = conn.getresponse()
   data = res.read()
 
+  #parse result
   data_decoded = json.loads(data.decode("utf-8"))
   job_id = data_decoded["id"]
+
+  print(job_id)
 
   return job_id
 
 def get_sql_result(auth_token, rest_api_hostname, job_id):
+
+  #establish connection
   conn = http.client.HTTPSConnection(rest_api_hostname)
 
+  #create headers
   headers = {
   'content-type': "application/json",
   'authorization': "Bearer " + auth_token,
   'x-deployment-id': deployment_id
   }
 
+  #create request to get job result
   request = "/dbapi/v4/sql_jobs/"
   request = request + job_id
 
+  #get request
   conn.request("GET", request, headers = headers)
 
   res = conn.getresponse()
   data = res.read()
 
+  #parse response
   data_decoded = json.loads(data.decode("utf-8"))
   result = data_decoded["results"]
-
+  
   return result
 
 @app.route('/cloud')
@@ -180,6 +199,16 @@ def get_cloud():
   result = get_sql_result(auth_token, rest_api_hostname, job_id)
 
   json_result = result[0]
+  
+  rows = json_result["rows"]
+
+  rows = np.array(rows)
+
+  rows = rows.flatten()
+
+  rows = rows.tolist()
+
+  json_result["rows"] = rows
 
   return jsonify(json_result)
 
@@ -195,6 +224,16 @@ def get_ai():
 
   json_result = result[0]
 
+  rows = json_result["rows"]
+
+  rows = np.array(rows)
+
+  rows = rows.flatten()
+
+  rows = rows.tolist()
+
+  json_result["rows"] = rows
+
   return jsonify(json_result)
 
 @app.route('/security')
@@ -208,6 +247,16 @@ def get_security():
   result = get_sql_result(auth_token, rest_api_hostname, job_id)
 
   json_result = result[0]
+
+  rows = json_result["rows"]
+
+  rows = np.array(rows)
+
+  rows = rows.flatten()
+
+  rows = rows.tolist()
+
+  json_result["rows"] = rows
 
   return jsonify(json_result)
 
@@ -223,6 +272,16 @@ def get_data_science():
 
   json_result = result[0]
 
+  rows = json_result["rows"]
+
+  rows = np.array(rows)
+
+  rows = rows.flatten()
+
+  rows = rows.tolist()
+
+  json_result["rows"] = rows
+
   return jsonify(json_result)
 
 @app.route('/users')
@@ -236,6 +295,16 @@ def get_users():
   result = get_sql_result(auth_token, rest_api_hostname, job_id)
 
   json_result = result[0]
+
+  rows = json_result["rows"]
+
+  rows = np.array(rows)
+
+  rows = rows.flatten()
+
+  rows = rows.tolist()
+
+  json_result["rows"] = rows
 
   return jsonify(json_result)
 
