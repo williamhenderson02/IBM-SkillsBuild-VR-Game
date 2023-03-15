@@ -11,22 +11,47 @@ public class DataDataScience : MonoBehaviour
     public TextMeshProUGUI aText2;
     public TextMeshProUGUI aText3;
     public TextMeshProUGUI aText4;
+
+    public GameObject CorrectPrompt;
+    public GameObject IncorrectPrompt;
+    public GameObject CompleteScreen;
+    public GameObject QuestionScreen;
+
+    public GameObject aButton1;
+    public GameObject aButton2;
+    public GameObject aButton3;
+    public GameObject aButton4;
+
     public string[,] rows;
     public int qNo;
+    public int rows_count;
  
-    public string[,] NewResponse()
+    public void NewResponse()
     {
         Response r = DB2apiDataScience.GetNewResponse();
-        rows = r.rows;
-        return rows;
+        rows = new string[r.rows_count,7];
+        rows_count = r.rows_count;
+        for (int i = 0; i < r.rows_count; i++){
+            for (int j = 0; j < 7; j++){
+                rows[i,j] = r.rows[i*7 + j];
+            }
+        }
+        Debug.Log(rows[0,0]);
     }
 
     public void Display()
     {
-        rows = NewResponse();
+        CorrectPrompt.SetActive(false);
+        IncorrectPrompt.SetActive(false);
+
+        aButton1.SetActive(true);
+        aButton2.SetActive(true);
+        aButton3.SetActive(true);
+        aButton4.SetActive(true);
+
+        Debug.Log(rows);
         string questionText = rows[qNo, 1];
-        Debug.Log("::::" + questionText);
-        qText.text = "[]" + qNo + ".] " + questionText;
+        qText.text = "[" + (qNo+1) + ".] " + questionText;
 
         string option1 = rows[qNo, 2];
         aText1.text = "Answer 1: " + option1;
@@ -40,17 +65,32 @@ public class DataDataScience : MonoBehaviour
 
     public void Check(int num)
     {
+        aButton1.SetActive(false);
+        aButton2.SetActive(false);
+        aButton3.SetActive(false);
+        aButton4.SetActive(false);
+
         string answer = rows[qNo, 6];
+        Debug.Log("Pressed answer button, qNo is: " + qNo);
 
         if (num == int.Parse(answer))
         {
-            // do something
-            Debug.Log("");
+            Debug.Log("num " + num + " is equal to " + rows_count);
+            qNo++;
+            if(qNo >= rows_count){
+                CompleteScreen.SetActive(true);
+                CorrectPrompt.SetActive(false);
+                IncorrectPrompt.SetActive(false);
+                QuestionScreen.SetActive(false);
+            }
+            else{
+                CorrectPrompt.SetActive(true);
+            }
         }
         else
         {
-            Debug.Log("");
-            // incorrect
+            Debug.Log("num " + num + " is not equal to " + int.Parse(answer));
+            IncorrectPrompt.SetActive(true);
         }
     }
 }
