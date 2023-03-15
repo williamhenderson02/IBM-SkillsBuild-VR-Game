@@ -22,6 +22,8 @@ public class DataAI : MonoBehaviour
     public GameObject aButton3;
     public GameObject aButton4;
 
+    public WorldController WoCo;
+
     public string[,] rows;
     public int qNo;
     public int rows_count;
@@ -79,6 +81,9 @@ public class DataAI : MonoBehaviour
             qNo++;
             if(qNo >= rows_count){
                 CompleteScreen.SetActive(true);
+
+                WoCo.WinAI();
+
                 CorrectPrompt.SetActive(false);
                 IncorrectPrompt.SetActive(false);
                 QuestionScreen.SetActive(false);

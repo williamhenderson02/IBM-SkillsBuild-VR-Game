@@ -78,11 +78,25 @@ extern void Response__ctor_m77E77FB5B2FCA5712694C77C3149BB44FB651EC0 (void);
 extern void RoomTeleportController_TeleportToRoom_m7D0E8D19DABC1A767C54AC4AA198DB1F39C77468 (void);
 // 0x00000021 System.Void RoomTeleportController::.ctor()
 extern void RoomTeleportController__ctor_m449F763720A537A8D42390BAD647114AEDBA1C0D (void);
-// 0x00000022 System.Void Unity.Template.VR.XRPlatformControllerSetup::Start()
+// 0x00000022 System.Void WorldController::Update()
+extern void WorldController_Update_m47976EE42FF983D4ABE029B1F391CC0D3244CCF9 (void);
+// 0x00000023 System.Void WorldController::endGame()
+extern void WorldController_endGame_mA340F1915DB9F3FC0F30A89BC3F0EA700E9AD4D5 (void);
+// 0x00000024 System.Void WorldController::WinAI()
+extern void WorldController_WinAI_m48CE5C24AF05B2BF2A93961DD20A5B34121C35D2 (void);
+// 0x00000025 System.Void WorldController::WinCloud()
+extern void WorldController_WinCloud_m4A352B9E273E6284FE69EDBC2DE2CC3EE1AF59CB (void);
+// 0x00000026 System.Void WorldController::WinDataScience()
+extern void WorldController_WinDataScience_mCF969AE2FB6CB773026C10E6D0EAA4FC8E03A373 (void);
+// 0x00000027 System.Void WorldController::WinSecurity()
+extern void WorldController_WinSecurity_m3665AF3ABEEC1A48662F30F380D962BF7EE896E5 (void);
+// 0x00000028 System.Void WorldController::.ctor()
+extern void WorldController__ctor_m9CF9D0FE7A183D7B56F1E88144F643C2525F6270 (void);
+// 0x00000029 System.Void Unity.Template.VR.XRPlatformControllerSetup::Start()
 extern void XRPlatformControllerSetup_Start_m1F22FCA29DFD83DC0E343C3F391D04A7C52085BF (void);
-// 0x00000023 System.Void Unity.Template.VR.XRPlatformControllerSetup::.ctor()
+// 0x0000002A System.Void Unity.Template.VR.XRPlatformControllerSetup::.ctor()
 extern void XRPlatformControllerSetup__ctor_mF9A3998AF90962CF8F35BAF2221558BDF5F6596E (void);
-static Il2CppMethodPointer s_methodPointers[35] = 
+static Il2CppMethodPointer s_methodPointers[42] = 
 {
 	DataAI_NewResponse_m3C855219FF48B8B0F153C78F8179FAE8929EF2F7,
 	DataAI_Display_mA4337FCF0C193D37815575D8E71B14E2CC1BFA0B,
@@ -117,10 +131,17 @@ static Il2CppMethodPointer s_methodPointers[35] =
 	Response__ctor_m77E77FB5B2FCA5712694C77C3149BB44FB651EC0,
 	RoomTeleportController_TeleportToRoom_m7D0E8D19DABC1A767C54AC4AA198DB1F39C77468,
 	RoomTeleportController__ctor_m449F763720A537A8D42390BAD647114AEDBA1C0D,
+	WorldController_Update_m47976EE42FF983D4ABE029B1F391CC0D3244CCF9,
+	WorldController_endGame_mA340F1915DB9F3FC0F30A89BC3F0EA700E9AD4D5,
+	WorldController_WinAI_m48CE5C24AF05B2BF2A93961DD20A5B34121C35D2,
+	WorldController_WinCloud_m4A352B9E273E6284FE69EDBC2DE2CC3EE1AF59CB,
+	WorldController_WinDataScience_mCF969AE2FB6CB773026C10E6D0EAA4FC8E03A373,
+	WorldController_WinSecurity_m3665AF3ABEEC1A48662F30F380D962BF7EE896E5,
+	WorldController__ctor_m9CF9D0FE7A183D7B56F1E88144F643C2525F6270,
 	XRPlatformControllerSetup_Start_m1F22FCA29DFD83DC0E343C3F391D04A7C52085BF,
 	XRPlatformControllerSetup__ctor_mF9A3998AF90962CF8F35BAF2221558BDF5F6596E,
 };
-static const int32_t s_InvokerIndices[35] = 
+static const int32_t s_InvokerIndices[42] = 
 {
 	5743,
 	5743,
@@ -142,6 +163,13 @@ static const int32_t s_InvokerIndices[35] =
 	8616,
 	8616,
 	8616,
+	5743,
+	5743,
+	5743,
+	5743,
+	5743,
+	5743,
+	5743,
 	5743,
 	5743,
 	5743,
@@ -162,7 +190,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	35,
+	42,
 	s_methodPointers,
 	0,
 	NULL,
