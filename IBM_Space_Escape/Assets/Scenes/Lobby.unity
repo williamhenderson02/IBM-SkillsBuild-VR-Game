@@ -926,8 +926,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2023305268}
-        m_TargetAssemblyTypeName: DataSecurity, Assembly-CSharp
+      - m_Target: {fileID: 1524666588}
+        m_TargetAssemblyTypeName: DataAI, Assembly-CSharp
         m_MethodName: Check
         m_Mode: 3
         m_Arguments:
@@ -14879,6 +14879,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1524666588}
+        m_TargetAssemblyTypeName: DataAI, Assembly-CSharp
+        m_MethodName: NewResponse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1524666587}
         m_TargetAssemblyTypeName: QuizController, Assembly-CSharp
         m_MethodName: StartQuiz
@@ -16400,7 +16412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.47192967}
+  m_AnchoredPosition: {x: 0, y: 3.59}
   m_SizeDelta: {x: 1163, y: 654}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &951822921
@@ -17400,7 +17412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45.5503, y: 1.0345646}
+  m_AnchoredPosition: {x: 330, y: -212}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003289207
@@ -18030,8 +18042,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2023305268}
-        m_TargetAssemblyTypeName: DataSecurity, Assembly-CSharp
+      - m_Target: {fileID: 1524666588}
+        m_TargetAssemblyTypeName: DataAI, Assembly-CSharp
         m_MethodName: Check
         m_Mode: 3
         m_Arguments:
@@ -27946,10 +27958,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   welcomeScreen: {fileID: 1747629742}
   questionScreen: {fileID: 1679774217}
-  a1Object: {fileID: 0}
-  a2Object: {fileID: 0}
-  a3Object: {fileID: 0}
-  a4Object: {fileID: 0}
+  a1Object: {fileID: 1397225130}
+  a2Object: {fileID: 1189398408}
+  a3Object: {fileID: 1717072740}
+  a4Object: {fileID: 1795407804}
 --- !u!114 &1524666588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27967,14 +27979,14 @@ MonoBehaviour:
   aText2: {fileID: 848476876}
   aText3: {fileID: 11641046}
   aText4: {fileID: 68747980}
-  CorrectPrompt: {fileID: 0}
-  IncorrectPrompt: {fileID: 0}
-  CompleteScreen: {fileID: 0}
-  QuestionScreen: {fileID: 0}
-  aButton1: {fileID: 0}
-  aButton2: {fileID: 0}
-  aButton3: {fileID: 0}
-  aButton4: {fileID: 0}
+  CorrectPrompt: {fileID: 164047878}
+  IncorrectPrompt: {fileID: 1614177769}
+  CompleteScreen: {fileID: 951822919}
+  QuestionScreen: {fileID: 1679774217}
+  aButton1: {fileID: 1397225130}
+  aButton2: {fileID: 1189398408}
+  aButton3: {fileID: 1717072740}
+  aButton4: {fileID: 1795407804}
   qNo: 0
   rows_count: 0
 --- !u!1001 &1526123768
@@ -31586,8 +31598,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2023305268}
-        m_TargetAssemblyTypeName: DataSecurity, Assembly-CSharp
+      - m_Target: {fileID: 1524666588}
+        m_TargetAssemblyTypeName: DataAI, Assembly-CSharp
         m_MethodName: Check
         m_Mode: 3
         m_Arguments:
@@ -35930,8 +35942,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2023305268}
-        m_TargetAssemblyTypeName: DataSecurity, Assembly-CSharp
+      - m_Target: {fileID: 1524666588}
+        m_TargetAssemblyTypeName: DataAI, Assembly-CSharp
         m_MethodName: Check
         m_Mode: 3
         m_Arguments:
@@ -36051,7 +36063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.0309649}
+  m_AnchoredPosition: {x: 0, y: 3.59}
   m_SizeDelta: {x: 1163, y: 654}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1972396649
