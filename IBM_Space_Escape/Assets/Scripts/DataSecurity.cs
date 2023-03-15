@@ -11,12 +11,13 @@ public class DataSecurity : MonoBehaviour
     public TextMeshProUGUI aText2;
     public TextMeshProUGUI aText3;
     public TextMeshProUGUI aText4;
-    public string[,] rows;
+    public string[,] rows = new string[6,8];
     public int qNo;
  
     public string[,] NewResponse()
     {
         Response r = DB2apiSecurity.GetNewResponse();
+        Debug.Log(r.rows[0,0]);
         rows = r.rows;
         return rows;
     }
@@ -24,8 +25,9 @@ public class DataSecurity : MonoBehaviour
     public void Display()
     {
         rows = NewResponse();
+        Debug.Log(rows);
         string questionText = rows[qNo, 1];
-        Debug.Log("::::" + questionText);
+        Debug.Log("anything " + questionText);
         qText.text = "[]" + qNo + ".] " + questionText;
 
         string option1 = rows[qNo, 2];

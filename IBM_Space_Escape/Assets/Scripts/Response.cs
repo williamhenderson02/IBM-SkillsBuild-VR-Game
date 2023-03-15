@@ -3,7 +3,7 @@
 public class Response
 {
     public string[] columns;
-    public string[] column_type;
+    public string[] columns_type;
     public string command;
     public int index;
     public int limit;

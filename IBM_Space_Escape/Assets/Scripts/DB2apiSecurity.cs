@@ -14,6 +14,9 @@ public static class DB2apiSecurity
 
         string json = reader.ReadToEnd();
 
+        Debug.Log(json);
+        Debug.Log("hi" + JsonUtility.FromJson<Response>(json).rows);
+
         return JsonUtility.FromJson<Response>(json);
 
     }
